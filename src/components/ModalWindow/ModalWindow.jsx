@@ -14,7 +14,7 @@ export default function ModalWindow(props) {
                         <p>Не удалось получить данные с сервера</p>
                     </div>
                     <div className='modal-window__wrapper__card__footer'>
-                        <button><p>ОК</p></button>
+                        <button onClick={props.closeModalWindowError}><p>ОК</p></button>
                     </div>
                 </div>
             </div>
