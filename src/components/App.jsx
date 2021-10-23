@@ -23,16 +23,18 @@ export default function App() {
         throw new Error(response.status);
     }
 
+    let closeModalWindowError = () => {
+        setShowModalWindowError(false)
+    }
+
     useEffect(() => {
         loadJson('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
             .catch(() => setShowModalWindowError(true))
     }, [])
 
-    console.log(arrayRequest)
-
     return (
         <div className='app'>
-            <ModalWindow showModalWindowError={showModalWindowError} />
+            {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
         </div>
     )
 }
