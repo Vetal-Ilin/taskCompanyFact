@@ -6,11 +6,21 @@ export default function App() {
 
     const [arrayRequest, setArrayRequest] = useState([])
 
+    async function loadJson(url) {
+        let response = await fetch(url);
+
+        if (response.status === 200) {
+            let json = await response.json(); 
+            setArrayRequest(json)
+            return
+        }
+
+        throw new Error(response.status);
+    }
+
     useEffect(() => {
-        fetch('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
-         .then(res => res.json())
-         .then(res => setArrayRequest(res))
-         .catch(err => console.log(err))
+        loadJson('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
+            .catch(err => console.log(err))
     }, [])
 
     console.log(arrayRequest)
