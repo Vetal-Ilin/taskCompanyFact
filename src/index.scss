@@ -1,5 +1,7 @@
 @import '~normalize.css';
-@import './styles/base.scss';
 @import './styles/variables.scss';
+@import './styles/base.scss';
 @import './styles/fonts.scss';
 @import './styles/mixin.scss';
+@import './components/App.scss';
+@import './components/ModalWindow/ModalWindow.scss';
