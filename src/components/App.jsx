@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.scss';
+import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
 
     return (
         <div className='app'>
+            <ModalWindow />
            Проверка
         </div>
     )
