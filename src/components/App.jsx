@@ -4,7 +4,8 @@ import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 
 export default function App() {
 
-    const [arrayRequest, setArrayRequest] = useState([])
+    const [arrayRequest, setArrayRequest] = useState([]);
+    const [showModalWindowError, setShowModalWindowError] = useState(false)
 
     async function loadJson(url) {
         let response = await fetch(url);
@@ -24,15 +25,14 @@ export default function App() {
 
     useEffect(() => {
         loadJson('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
-            .catch(err => console.log(err))
+            .catch(() => setShowModalWindowError(true))
     }, [])
 
     console.log(arrayRequest)
 
     return (
         <div className='app'>
-            <ModalWindow />
-           Проверка
+            <ModalWindow showModalWindowError={showModalWindowError} />
         </div>
     )
 }
