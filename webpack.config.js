@@ -133,6 +133,24 @@ module.exports = {
         ],
       },
       {
+        test: /\.s[ac]ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader, 
+          },
+          "css-loader",
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                config: path.resolve(__dirname, 'postcss.config.js')
+              }
+            }
+          },
+          "sass-loader",
+        ],
+      },
+      {
         test: /\.(png|jpg|svg|gif)$/,
         use: [
           {
