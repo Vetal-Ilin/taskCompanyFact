@@ -91,8 +91,20 @@
             &__card {
                 width: 50%;
                 left: 50%;
+                animation-name: emergenceModalWindow;
+                animation-duration: .5s;
                 transform: translateY(-60%) translateX(-50%);
             }
         }
     }
 }
+
+@keyframes emergenceModalWindow {
+    from {
+      top: -100%;
+    }
+
+    to {
+      top: 50%;
+    }
+  }
