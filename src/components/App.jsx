@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import './App.scss';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 
 
