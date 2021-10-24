@@ -5,16 +5,14 @@ import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 export default function App() {
 
     const [showModalWindowError, setShowModalWindowError] = useState(false);
-    const [stateObjectArray, setStateObjectArray] = useState([]);
-    const [stateNumberArray, setstateStateNumberArray] = useState([]);
-    const [stateStringArray, setStateStringArray] = useState([]);
-    const [stateBooleanArray, setstateStateBooleanArray] = useState([])
+    const [arrayDataSelect, setArrayDataSelect] = useState([]);
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
         const numberArray = [];
         const stringArray = [];
         const booleanArray = [];
+        const allArray = [];
 
         for(let item of arr) {
             if(typeof item === 'object' & item !== null) {
@@ -30,11 +28,23 @@ export default function App() {
                 booleanArray.push(item)
             }
         }
-        setStateObjectArray(objectArray);
-        setstateStateNumberArray(numberArray);
-        setStateStringArray(stringArray);
-        setstateStateBooleanArray(booleanArray);
+
+        if(objectArray.length !== 0) {
+            allArray.push(objectArray)
+        } 
+        if(numberArray.length !== 0) {
+            allArray.push(numberArray)
+        } 
+        if(stringArray.length !== 0) {
+            allArray.push(stringArray)
+        } 
+        if(booleanArray.length !== 0) {
+            allArray.push(booleanArray)
+        }
+        setArrayDataSelect(allArray)
     }
+
+    console.log(arrayDataSelect)
 
     const customFlatArrMethod = (arr) => {
         let smoothedАrray = [];
