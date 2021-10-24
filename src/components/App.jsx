@@ -5,6 +5,9 @@ import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 export default function App() {
 
     const [showModalWindowError, setShowModalWindowError] = useState(false);
+    const [stateObjectArray, setStateObjectArray] = useState([]);
+    const [stateNumberArray, setstateStateNumberArray] = useState([]);
+    const [stateStringArray, setStateStringArray] = useState([]);
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -21,9 +24,9 @@ export default function App() {
                 stringArray.push(item)
             }
         }
-        console.log(objectArray)
-        console.log(numberArray)
-        console.log(stringArray)
+        setStateObjectArray(objectArray)
+        setstateStateNumberArray(numberArray)
+        setStateStringArray(stringArray)
     }
 
     const customFlatArrMethod = (arr) => {
