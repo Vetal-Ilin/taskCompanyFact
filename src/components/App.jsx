@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 import ListSelect from '@components/ListSelect/ListSelect';
+import ScreenSelectedValues from '@components/ScreenSelectedValues/ScreenSelectedValues';
 
 
 export default function App() {
@@ -12,8 +13,6 @@ export default function App() {
     const addSelectedPropertyState = (value) => {
         setSelectedListProperties((prev) => [...prev, value])
     }
-
-    console.log(selectedListProperties)
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -94,7 +93,12 @@ export default function App() {
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
-                <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} className='add__list-select' />
+                <div className='app__wrapper-flex'>
+                    <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
+                    <div className='app__wrapper-flex__result-value'>
+                        <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
+                    </div>
+                </div>
             </div>
         </div>
     )
