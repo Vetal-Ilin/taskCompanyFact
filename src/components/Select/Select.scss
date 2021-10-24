@@ -1,3 +1,28 @@
 .select {
-    
+    width: 90%;
+    height: auto;
+    border: none;
+    background-color: $palette-secondary;
+    box-shadow: $box-shadow;
+    margin-top: 50px;
+    padding: 30px;
+    text-align: center;
+    font-family: 'Comfortaa', 'sans-serif';
+    font-size: 15px;
+    color: $palette-primary;
+
+    @media screen and(hover: hover) {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+   
+    @media screen and(min-width: 992px) {
+        width: 40%;
+        margin: 20px;
+    }
+
+    @media screen and(min-width: 1200px) {
+        width: 30%;
+    }
 }
