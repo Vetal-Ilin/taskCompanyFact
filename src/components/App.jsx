@@ -4,13 +4,26 @@ import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 
 export default function App() {
 
-    const [arrayRequest, setArrayRequest] = useState([]);
     const [showModalWindowError, setShowModalWindowError] = useState(false);
-   
-
 
     const customSplitArrMethod = (arr) => {
-        console.log(arr)
+        const objectArray = [];
+        const numberArray = [];
+        const stringArray = [];
+        for(let item of arr) {
+            if(typeof item === 'object' & item !== null) {
+                objectArray.push(item)
+            }
+            if(typeof item === 'number') {
+                numberArray.push(item)
+            }
+            if(typeof item === 'string') {
+                stringArray.push(item)
+            }
+        }
+        console.log(objectArray)
+        console.log(numberArray)
+        console.log(stringArray)
     }
 
     const customFlatArrMethod = (arr) => {
@@ -36,7 +49,6 @@ export default function App() {
             for (let item in json) {
                 resultingArray.push(json[item])
             } 
-            setArrayRequest(resultingArray); //
             customFlatArrMethod(resultingArray);
             return
         }
