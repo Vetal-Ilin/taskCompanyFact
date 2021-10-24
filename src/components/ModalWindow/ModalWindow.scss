@@ -64,7 +64,7 @@
                     background-color: $palette-secondary;
                     border-radius: 10px;
                     padding: 15px;
-                    box-shadow: 5px 5px 15px  10px $palette-secondary-transparent;
+                    box-shadow: $box-shadow;
                     transition: transform $animation-speed, box-shadow $animation-speed;
 
                     & > p {
@@ -73,7 +73,7 @@
 
                     &:active {
                         transform: translateY(5px) translateX(5px);
-                        box-shadow: 3px 3px 10px 5px $palette-secondary-transparent;
+                        box-shadow: $box-shadow-active;
                     }
 
                     @media screen and (hover: hover) {
