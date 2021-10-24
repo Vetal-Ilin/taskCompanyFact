@@ -1,9 +1,10 @@
-import React from 'react'
-import waitImage from '@images/waitImage.png'
+import React from 'react';
+import { nanoid } from 'nanoid';
+import waitImage from '@images/waitImage.png';
 
 export default function ScreenSelectedValues({className, selectedListProperties = []}) {
 
-    let iterateSelectedProperties = function() {return selectedListProperties.map((item) => <p>{item}</p>)}
+    let iterateSelectedProperties = function() {return selectedListProperties.map((item) => <p key={nanoid()}>{item}</p>)}
 
     return (
         <article className={'screen-selected-values ' + className}>
