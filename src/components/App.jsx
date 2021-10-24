@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
+import ListSelect from '@components/ListSelect/ListSelect';
 
 
 export default function App() {
@@ -44,8 +45,6 @@ export default function App() {
         setArrayDataSelect(allArray)
     }
 
-    console.log(arrayDataSelect)
-
     const customFlatArrMethod = (arr) => {
         let smoothedАrray = [];
         function recursiveFunction(arr) {
@@ -87,7 +86,9 @@ export default function App() {
     return (
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
-            
+            <div className='container'>
+                <ListSelect />
+            </div>
         </div>
     )
 }
