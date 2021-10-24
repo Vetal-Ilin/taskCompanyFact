@@ -27,7 +27,7 @@ export default function App() {
                 stringArray.push(item)
             }
             if(typeof item === 'boolean') {
-
+                booleanArray.push(item)
             }
         }
         setStateObjectArray(objectArray);
@@ -77,11 +77,7 @@ export default function App() {
     return (
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
-            <select name="select" onChange={() => console.log('ok')} id="1" >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
+            
         </div>
     )
 }
