@@ -8,11 +8,14 @@ export default function App() {
     const [stateObjectArray, setStateObjectArray] = useState([]);
     const [stateNumberArray, setstateStateNumberArray] = useState([]);
     const [stateStringArray, setStateStringArray] = useState([]);
+    const [stateBooleanArray, setstateStateBooleanArray] = useState([])
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
         const numberArray = [];
         const stringArray = [];
+        const booleanArray = [];
+
         for(let item of arr) {
             if(typeof item === 'object' & item !== null) {
                 objectArray.push(item)
@@ -23,10 +26,14 @@ export default function App() {
             if(typeof item === 'string') {
                 stringArray.push(item)
             }
+            if(typeof item === 'boolean') {
+
+            }
         }
-        setStateObjectArray(objectArray)
-        setstateStateNumberArray(numberArray)
-        setStateStringArray(stringArray)
+        setStateObjectArray(objectArray);
+        setstateStateNumberArray(numberArray);
+        setStateStringArray(stringArray);
+        setstateStateBooleanArray(booleanArray);
     }
 
     const customFlatArrMethod = (arr) => {
@@ -70,6 +77,11 @@ export default function App() {
     return (
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
+            <select name="select" onChange={() => console.log('ok')} id="1" >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
         </div>
     )
 }
