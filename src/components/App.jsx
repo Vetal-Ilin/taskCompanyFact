@@ -87,7 +87,7 @@ export default function App() {
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
-                <ListSelect />
+                <ListSelect arrayDataSelect={arrayDataSelect} />
             </div>
         </div>
     )
