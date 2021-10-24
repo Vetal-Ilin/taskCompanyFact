@@ -6,16 +6,26 @@ export default function App() {
 
     const [arrayRequest, setArrayRequest] = useState([]);
     const [showModalWindowError, setShowModalWindowError] = useState(false);
-    let smoothedАrray = [];
+   
+
+
+    const customSplitArrMethod = (arr) => {
+        console.log(arr)
+    }
 
     const customFlatArrMethod = (arr) => {
-        for (let item of arr) {
-           if(Array.isArray(item)) {
-               customFlatArrMethod(item)
-           } else {
-                smoothedАrray.push(item)
-           }
+        let smoothedАrray = [];
+        function recursiveFunction(arr) {
+            for (let item of arr) {
+                if(Array.isArray(item)) {
+                    recursiveFunction(item)
+                } else {
+                     smoothedАrray.push(item)
+                }
+             }
         }
+        recursiveFunction(arr);
+        customSplitArrMethod(smoothedАrray);   
     }
 
     async function loadJson(url) {
