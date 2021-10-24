@@ -7,6 +7,13 @@ export default function App() {
 
     const [showModalWindowError, setShowModalWindowError] = useState(false);
     const [arrayDataSelect, setArrayDataSelect] = useState([]);
+    const [selectedListProperties, setSelectedListProperties] = useState([]);
+
+    const addSelectedPropertyState = (value) => {
+        setSelectedListProperties((prev) => [...prev, value])
+    }
+
+    console.log(selectedListProperties)
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -87,7 +94,7 @@ export default function App() {
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
-                <ListSelect arrayDataSelect={arrayDataSelect} />
+                <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} />
             </div>
         </div>
     )
