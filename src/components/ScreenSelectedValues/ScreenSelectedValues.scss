@@ -1,0 +1,46 @@
+.screen-selected-values {
+    width: 90%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    & > h2 {
+        text-transform: uppercase;
+        color: $palette-primary;
+        text-align: center;
+    }
+
+    &__text {
+        width: 100%;
+        box-shadow: $box-shadow; 
+        height: 200px;
+        padding: 15px;
+        margin-top: 30px;
+
+        &__primary {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            & > img {
+                width: 100px;
+                height: 100px;
+            }
+
+            & > p {
+                text-transform: uppercase;
+                color: $palette-primary;
+                margin-top: 10px;
+            }
+        }
+
+        & > p {
+            text-align: center;
+        }
+    }
+}
