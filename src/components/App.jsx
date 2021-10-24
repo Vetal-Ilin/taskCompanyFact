@@ -94,7 +94,7 @@ export default function App() {
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
-                <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} />
+                <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} className='add__list-select' />
             </div>
         </div>
     )
