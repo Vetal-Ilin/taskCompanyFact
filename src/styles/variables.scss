@@ -21,3 +21,7 @@ $palette-secondary-quaternary: $x-color-gray; // серый
 
 // animation speed
 $animation-speed: 0.3s;
+
+//box-shadow 
+$box-shadow: 5px 5px 15px  10px $palette-secondary-transparent;
+$box-shadow-active: 3px 3px 10px 5px $palette-secondary-transparent;
