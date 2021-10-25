@@ -3,6 +3,7 @@ import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 import ListSelect from '@components/ListSelect/ListSelect';
 import ScreenSelectedValues from '@components/ScreenSelectedValues/ScreenSelectedValues';
 import CalculatedValues from '@components/CalculatedValues/CalculatedValues';
+import {sha256} from 'js-sha256'; 
 
 
 export default function App() {
@@ -12,7 +13,9 @@ export default function App() {
     const [selectedListProperties, setSelectedListProperties] = useState([]);
     const [firstSelectedElementArray, setFirstSelectedElementArray] = useState([]);
     const [selectedListPropertiesNumbers, setSelectedListPropertiesNumbers] = useState([]);
-    const [selectedMultipliedPropertiesNumbers, setSelectedMultipliedPropertiesNumbers] = useState([])
+    const [selectedMultipliedPropertiesNumbers, setSelectedMultipliedPropertiesNumbers] = useState([]);
+    const [selectedListPropertiesString, setSelectedListPropertiesString] = useState([]);
+    const [selectedHashPropertiesString, setSelectedhashPropertiesString] = useState([])
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -95,10 +98,12 @@ export default function App() {
         if(dataType === 'number') {
             setSelectedListPropertiesNumbers((prev) => [...prev, value])
         }
+        if(dataType === 'string') {
+            setSelectedListPropertiesString((prev) => [...prev, value])
+        }
     }
    
     const multiplicationNumericValues = () => {
-       console.log(selectedListPropertiesNumbers)
         if(selectedListPropertiesNumbers.length > 1) {
             const multipliedValues = [];
             const arrClone = multipliedValues.concat(selectedListPropertiesNumbers);
@@ -108,6 +113,19 @@ export default function App() {
             setSelectedMultipliedPropertiesNumbers(selectedListPropertiesNumbers[0])
         }  
     }
+
+    const calculateHashString = () => {
+        if(selectedListPropertiesString.length > 0) {
+            const allSelectionString = [];
+            const arrClone = allSelectionString.concat(selectedListPropertiesString);
+            let hashArr = sha256(arrClone);
+            setSelectedhashPropertiesString(hashArr);
+        }
+    }
+
+    useEffect(() => {
+        calculateHashString()
+    }, [selectedListPropertiesString])
 
     useEffect(() => {
         multiplicationNumericValues()
@@ -127,8 +145,8 @@ export default function App() {
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
                         <div className='app__wrapper-flex__result-value__calculation-results'>
-                            <CalculatedValues title='Перемноженные числовые значения' selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
-                            <CalculatedValues title='Хешированные строковые значения' selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <CalculatedValues title='Перемноженные числовые значения' calculatedValue={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <CalculatedValues title='Хешированные строковые значения' calculatedValue={selectedHashPropertiesString} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
                         </div>
                     </div>
                 </div>
