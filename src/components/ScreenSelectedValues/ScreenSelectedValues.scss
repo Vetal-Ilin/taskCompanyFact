@@ -1,6 +1,5 @@
 .screen-selected-values {
     width: 90%;
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -14,7 +13,8 @@
 
     &__text {
         width: 100%;
-        box-shadow: $box-shadow; 
+        box-shadow: $box-shadow;
+        border-radius: 20px;
         height: 200px;
         padding: 15px;
         margin-top: 30px;
@@ -41,6 +41,24 @@
 
         & > p {
             text-align: center;
+        }
+    }
+
+    @media (min-width: 768px) {
+        &__text {
+            height: 260px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        &__text {
+            height: 270px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        &__text {
+            height: 280px;
         }
     }
 }
