@@ -7,10 +7,15 @@
 
     & > p {
         color: $palette-primary;
+        
 
         &:first-child {
             text-transform: uppercase;
             margin-bottom: 10px;
+        }
+
+        &:last-child {
+            word-break: break-all;
         }
     }
 }
