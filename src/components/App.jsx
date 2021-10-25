@@ -12,6 +12,7 @@ export default function App() {
     const [selectedListProperties, setSelectedListProperties] = useState([]);
     const [firstSelectedElementArray, setFirstSelectedElementArray] = useState([]);
     const [selectedListPropertiesNumbers, setSelectedListPropertiesNumbers] = useState([]);
+    const [selectedMultipliedPropertiesNumbers, setSelectedMultipliedPropertiesNumbers] = useState([])
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -92,20 +93,26 @@ export default function App() {
             setSelectedListProperties(notFirstSelectedElementArray.concat(value))
         }
         if(dataType === 'number') {
-            multiplicationNumericValues(value)
+            setSelectedListPropertiesNumbers((prev) => [...prev, value])
         }
     }
-
-    const multiplicationNumericValues = (namber) => {
-        console.log(namber)
-        if(selectedListPropertiesNumbers.length != 0) {
-            let multipliedValues = selectedListPropertiesNumbers.reduce((mul, current) => mul * current, 0);
-            setSelectedListPropertiesNumbers(multipliedValues)
+   
+    const multiplicationNumericValues = () => {
+       console.log(selectedListPropertiesNumbers)
+        if(selectedListPropertiesNumbers.length > 1) {
+            const multipliedValues = [];
+            const arrClone = multipliedValues.concat(selectedListPropertiesNumbers);
+            let MultipliedArr = arrClone.reduce((mull, current) => mull * current);
+            setSelectedMultipliedPropertiesNumbers(MultipliedArr)
         } else {
-            setSelectedListPropertiesNumbers(namber)
-        }
+            setSelectedMultipliedPropertiesNumbers(selectedListPropertiesNumbers[0])
+        }  
     }
 
+    useEffect(() => {
+        multiplicationNumericValues()
+    }, [selectedListPropertiesNumbers])
+    
     useEffect(() => {
         loadJson('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
             .catch(() => setShowModalWindowError(true))
@@ -116,10 +123,10 @@ export default function App() {
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
                 <div className='app__wrapper-flex'>
-                    <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
+                    <ListSelect arrayDataSelect={arrayDataSelect} selectedListPropertiesNumbers={selectedListPropertiesNumbers} addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
-                        <ScreenMultipliedValues />
+                        <ScreenMultipliedValues selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} />
                     </div>
                 </div>
             </div>
