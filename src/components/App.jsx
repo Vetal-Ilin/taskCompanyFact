@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 import ListSelect from '@components/ListSelect/ListSelect';
 import ScreenSelectedValues from '@components/ScreenSelectedValues/ScreenSelectedValues';
+import ScreenMultipliedValues from '@components/ScreenMultipliedValues/ScreenMultipliedValues';
 
 
 export default function App() {
@@ -118,6 +119,7 @@ export default function App() {
                     <ListSelect arrayDataSelect={arrayDataSelect}  addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
+                        <ScreenMultipliedValues />
                     </div>
                 </div>
             </div>
