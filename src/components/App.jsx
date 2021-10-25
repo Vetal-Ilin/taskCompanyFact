@@ -10,6 +10,7 @@ export default function App() {
     const [arrayDataSelect, setArrayDataSelect] = useState([]);
     const [selectedListProperties, setSelectedListProperties] = useState([]);
     const [firstSelectedElementArray, setFirstSelectedElementArray] = useState([]);
+    const [selectedListPropertiesNumbers, setSelectedListPropertiesNumbers] = useState([]);
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -55,7 +56,7 @@ export default function App() {
                 if(Array.isArray(item)) {
                     recursiveFunction(item)
                 } else {
-                     smoothedАrray.push(item)
+                    smoothedАrray.push(item)
                 }
              }
         }
@@ -81,13 +82,26 @@ export default function App() {
         setShowModalWindowError(false)
     }
 
-    const addSelectedPropertyState = (value) => {
+    const addSelectedPropertyState = ({value, dataType}) => {
         setFirstSelectedElementArray(selectedListProperties[0])
         if(selectedListProperties.length < 10) {
             setSelectedListProperties((prev) => [...prev, value])
         } else {
             let notFirstSelectedElementArray = selectedListProperties.filter( (item, index) => index != 0)
             setSelectedListProperties(notFirstSelectedElementArray.concat(value))
+        }
+        if(dataType === 'number') {
+            multiplicationNumericValues(value)
+        }
+    }
+
+    const multiplicationNumericValues = (namber) => {
+        console.log(namber)
+        if(selectedListPropertiesNumbers.length != 0) {
+            let multipliedValues = selectedListPropertiesNumbers.reduce((mul, current) => mul * current, 0);
+            setSelectedListPropertiesNumbers(multipliedValues)
+        } else {
+            setSelectedListPropertiesNumbers(namber)
         }
     }
 
