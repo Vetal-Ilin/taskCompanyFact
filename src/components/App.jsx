@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 import ListSelect from '@components/ListSelect/ListSelect';
 import ScreenSelectedValues from '@components/ScreenSelectedValues/ScreenSelectedValues';
-import ScreenMultipliedValues from '@components/ScreenMultipliedValues/ScreenMultipliedValues';
+import CalculatedValues from '@components/CalculatedValues/CalculatedValues';
 
 
 export default function App() {
@@ -126,7 +126,10 @@ export default function App() {
                     <ListSelect arrayDataSelect={arrayDataSelect} selectedListPropertiesNumbers={selectedListPropertiesNumbers} addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
-                        <ScreenMultipliedValues selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} />
+                        <div className='app__wrapper-flex__result-value__calculation-results'>
+                            <CalculatedValues title='Перемноженные числовые значения' selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <CalculatedValues title='Хешированные строковые значения' selectedMultipliedPropertiesNumbers={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                        </div>
                     </div>
                 </div>
             </div>
