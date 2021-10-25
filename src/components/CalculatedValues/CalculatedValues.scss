@@ -1,0 +1,16 @@
+.calculated-values {
+    height: auto;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: $box-shadow;
+    padding: 20px;
+
+    & > p {
+        color: $palette-primary;
+
+        &:first-child {
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+    }
+}
