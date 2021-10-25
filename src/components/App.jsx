@@ -9,10 +9,7 @@ export default function App() {
     const [showModalWindowError, setShowModalWindowError] = useState(false);
     const [arrayDataSelect, setArrayDataSelect] = useState([]);
     const [selectedListProperties, setSelectedListProperties] = useState([]);
-
-    const addSelectedPropertyState = (value) => {
-        setSelectedListProperties((prev) => [...prev, value])
-    }
+    const [firstSelectedElementArray, setFirstSelectedElementArray] = useState([]);
 
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
@@ -82,6 +79,16 @@ export default function App() {
 
     const closeModalWindowError = () => {
         setShowModalWindowError(false)
+    }
+
+    const addSelectedPropertyState = (value) => {
+        setFirstSelectedElementArray(selectedListProperties[0])
+        if(selectedListProperties.length < 10) {
+            setSelectedListProperties((prev) => [...prev, value])
+        } else {
+            let notFirstSelectedElementArray = selectedListProperties.filter( (item, index) => index != 0)
+            setSelectedListProperties(notFirstSelectedElementArray.concat(value))
+        }
     }
 
     useEffect(() => {
