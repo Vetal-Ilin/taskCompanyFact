@@ -96,8 +96,7 @@ export default function App() {
             setSelectedListProperties(notFirstSelectedElementArray.concat([[value, valueType]]))
         }
     }
-
-
+    
     const transformationsSelectedValues = () => {
         if(selectedListProperties.length !== 0) {
             let mul = 1;
