@@ -1,17 +1,17 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-export default function Select({name, options = [], addSelectedPropertyState}) {
+export default function Select({options = [], addSelectedPropertyState}) {
 
-    let dataType = typeof options[0];
+    let valueType = typeof options[0];
 
     const clickOptions = (event) => {
-        addSelectedPropertyState({value: event.target.value, dataType: dataType})
+        addSelectedPropertyState({value: event.target.value, valueType: valueType})
     }
 
     return (
         <select className='select' onChange={clickOptions} defaultValue={'DEFAULT'}>
-            <option value='DEFAULT' hidden>{dataType}</option>
+            <option value='DEFAULT' hidden>{valueType}</option>
             {options.map((item) => typeof item !== 'object' ? <option key={nanoid()}>{String(item)}</option> : <option key={nanoid()}>{JSON.stringify(item)}</option>)}
         </select>
     )
