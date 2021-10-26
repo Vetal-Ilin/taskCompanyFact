@@ -33,6 +33,41 @@
                     width: 90%;
                     margin-top: 30px;
                 }
+
+                &__management {
+                    width: 90%;
+                    padding-bottom: 30px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+
+                    & > button {
+                        margin-top: 30px;
+                        min-width: 200px;
+                        border: none;
+                        background-color: $palette-secondary;
+                        border-radius: 10px;
+                        padding: 15px;
+                        box-shadow: $box-shadow;
+                        transition: transform $animation-speed, box-shadow $animation-speed;
+    
+                        & > p {
+                            color: $palette-primary;
+                        }
+    
+                        &:active {
+                            transform: translateY(5px) translateX(5px);
+                            box-shadow: $box-shadow-active;
+                        }
+    
+                        @media screen and (hover: hover) {
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
