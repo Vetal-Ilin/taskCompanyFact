@@ -71,12 +71,12 @@ p {
     font-family: 'Comfortaa', 'sans-serif';
     font-size: $font_size_p;
     @media (min-width: 768px) {
-        font-size: $font_size_p + 5;
+        font-size: $font_size_p + 1;
     }
     @media (min-width: 992px) {
-        font-size: $font_size_p + 6;
+        font-size: $font_size_p + 2;
     }
     @media (min-width: 1200px) {
-        font-size: $font_size_p + 7;
+        font-size: $font_size_p + 3;
     }
 }
