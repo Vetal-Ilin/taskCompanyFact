@@ -11,12 +11,12 @@ export default function App() {
     const [showModalWindowError, setShowModalWindowError] = useState(false);
     const [arrayDataSelect, setArrayDataSelect] = useState([]);
     const [selectedListProperties, setSelectedListProperties] = useState([]);
-    const [firstSelectedElementArray, setFirstSelectedElementArray] = useState([]);
+    const [selectedListDeletedProperties, setSelectedListDeletedProperties] = useState([]);
     const [selectedListPropertiesNumbers, setSelectedListPropertiesNumbers] = useState([]);
     const [selectedMultipliedPropertiesNumbers, setSelectedMultipliedPropertiesNumbers] = useState([]);
     const [selectedListPropertiesString, setSelectedListPropertiesString] = useState([]);
-    const [selectedHashPropertiesString, setSelectedhashPropertiesString] = useState([])
-
+    const [selectedHashPropertiesString, setSelectedhashPropertiesString] = useState([]);
+    console.log(selectedListDeletedProperties)
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
         const numberArray = [];
@@ -88,7 +88,7 @@ export default function App() {
     }
 
     const addSelectedPropertyState = ({value, dataType}) => {
-        setFirstSelectedElementArray(selectedListProperties[0])
+        setSelectedListDeletedProperties([]);
         if(selectedListProperties.length < 10) {
             setSelectedListProperties((prev) => [...prev, value])
         } else {
@@ -123,6 +123,33 @@ export default function App() {
         }
     }
 
+    const onClickButtonReset = () => {
+        setSelectedListProperties([]);
+        setSelectedListPropertiesNumbers([]);
+        setSelectedListPropertiesString([]);
+        setSelectedhashPropertiesString([])
+    }
+
+    const onClickButtonСancel = () => {
+        if(selectedListProperties.length > 0) {
+            setSelectedListDeletedProperties((prev) => [...prev, selectedListProperties[selectedListProperties.length - 1]]);
+            let notLastSelectedElementArray = selectedListProperties.filter( (item, index) => index != selectedListProperties.length - 1);
+            setSelectedListProperties(notLastSelectedElementArray);
+        }
+    }
+
+    const onClickButtonStepForward = () => {
+        
+        if(selectedListDeletedProperties.length === 10) {
+            return
+        } else if(selectedListDeletedProperties.length) {
+            setSelectedListProperties((prev) => [...prev, selectedListDeletedProperties[selectedListDeletedProperties.length - 1]]);
+            let notLastSelectedElementArray = selectedListDeletedProperties.filter( (item, index) => index != selectedListDeletedProperties.length - 1);
+            setSelectedListDeletedProperties(notLastSelectedElementArray);
+        } 
+    }
+    
+    
     useEffect(() => {
         calculateHashString()
     }, [selectedListPropertiesString])
@@ -147,6 +174,11 @@ export default function App() {
                         <div className='app__wrapper-flex__result-value__calculation-results'>
                             <CalculatedValues title='Перемноженные числовые значения' calculatedValue={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
                             <CalculatedValues title='Хешированные строковые значения' calculatedValue={selectedHashPropertiesString} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <div className='app__wrapper-flex__result-value__calculation-results__management'>
+                                <button onClick={onClickButtonReset}><p>Сброс</p></button>
+                                <button onClick={onClickButtonСancel}><p>Отмена</p></button>
+                                <button onClick={onClickButtonStepForward}>Вернуть</button>
+                            </div>
                         </div>
                     </div>
                 </div>
