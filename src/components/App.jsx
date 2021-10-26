@@ -7,23 +7,20 @@ import {sha256} from 'js-sha256';
 
 
 export default function App() {
-
     const [showModalWindowError, setShowModalWindowError] = useState(false);
     const [arrayDataSelect, setArrayDataSelect] = useState([]);
     const [selectedListProperties, setSelectedListProperties] = useState([]);
     const [selectedListDeletedProperties, setSelectedListDeletedProperties] = useState([]);
-    const [selectedListPropertiesNumbers, setSelectedListPropertiesNumbers] = useState([]);
     const [selectedMultipliedPropertiesNumbers, setSelectedMultipliedPropertiesNumbers] = useState([]);
-    const [selectedListPropertiesString, setSelectedListPropertiesString] = useState([]);
     const [selectedHashPropertiesString, setSelectedhashPropertiesString] = useState([]);
-    console.log(selectedListDeletedProperties)
+  
+
     const customSplitArrMethod = (arr) => {
         const objectArray = [];
         const numberArray = [];
         const stringArray = [];
         const booleanArray = [];
         const allArray = [];
-
         for(let item of arr) {
             if(typeof item === 'object' & item !== null) {
                 objectArray.push(item)
@@ -38,7 +35,6 @@ export default function App() {
                 booleanArray.push(item)
             }
         }
-
         if(objectArray.length !== 0) {
             allArray.push(objectArray)
         } 
@@ -54,10 +50,11 @@ export default function App() {
         setArrayDataSelect(allArray)
     }
 
+
     const customFlatArrMethod = (arr) => {
         let smoothedАrray = [];
         function recursiveFunction(arr) {
-            for (let item of arr) {
+            for(let item of arr) {
                 if(Array.isArray(item)) {
                     recursiveFunction(item)
                 } else {
@@ -69,106 +66,115 @@ export default function App() {
         customSplitArrMethod(smoothedАrray);   
     }
 
+
     async function loadJson(url) {
         let response = await fetch(url);
-        if (response.status === 200) {
+        if(response.status === 200) {
             let json = await response.json();
             let resultingArray = [];
-            for (let item in json) {
+            for(let item in json) {
                 resultingArray.push(json[item])
             } 
             customFlatArrMethod(resultingArray);
             return
         }
-        throw new Error(response.status);
+        throw new Error(response.status)
     }
+
 
     const closeModalWindowError = () => {
         setShowModalWindowError(false)
     }
 
-    const addSelectedPropertyState = ({value, dataType}) => {
+
+    const addSelectedPropertyState = ({value, valueType}) => {
         setSelectedListDeletedProperties([]);
         if(selectedListProperties.length < 10) {
-            setSelectedListProperties((prev) => [...prev, value])
+            setSelectedListProperties((prev) => [...prev, [value, valueType]])
         } else {
-            let notFirstSelectedElementArray = selectedListProperties.filter( (item, index) => index != 0)
-            setSelectedListProperties(notFirstSelectedElementArray.concat(value))
+            let notFirstSelectedElementArray = selectedListProperties.filter((item, index) => index != 0);
+            setSelectedListProperties(notFirstSelectedElementArray.concat([[value, valueType]]))
         }
-        if(dataType === 'number') {
-            setSelectedListPropertiesNumbers((prev) => [...prev, value])
-        }
-        if(dataType === 'string') {
-            setSelectedListPropertiesString((prev) => [...prev, value])
-        }
-    }
-   
-    const multiplicationNumericValues = () => {
-        if(selectedListPropertiesNumbers.length > 1) {
-            const multipliedValues = [];
-            const arrClone = multipliedValues.concat(selectedListPropertiesNumbers);
-            let MultipliedArr = arrClone.reduce((mull, current) => mull * current);
-            setSelectedMultipliedPropertiesNumbers(MultipliedArr)
-        } else {
-            setSelectedMultipliedPropertiesNumbers(selectedListPropertiesNumbers[0])
-        }  
     }
 
-    const calculateHashString = () => {
-        if(selectedListPropertiesString.length > 0) {
-            const allSelectionString = [];
-            const arrClone = allSelectionString.concat(selectedListPropertiesString);
-            let hashArr = sha256(arrClone);
-            setSelectedhashPropertiesString(hashArr);
+
+    const transformationsSelectedValues = () => {
+        if(selectedListProperties.length !== 0) {
+            let mul = 1;
+            let number = 0;
+            let stringConcat = '';
+            let string = 0;
+            for (let i = 0; i < selectedListProperties.length; ++i) {
+                if(selectedListProperties[i][1] === 'number') {
+                    mul *= selectedListProperties[i][0];
+                    number +=1
+                }
+                if(selectedListProperties[i][1] === 'string') {
+                    stringConcat += selectedListProperties[i][0];
+                    string += 1
+                }
+            }
+            if(number !== 0) {
+                setSelectedMultipliedPropertiesNumbers(mul)
+            } else {
+                setSelectedMultipliedPropertiesNumbers([])
+            }
+            if(string !== 0) {
+                let hashstringConcat = sha256(stringConcat);
+                setSelectedhashPropertiesString(hashstringConcat)
+            } else {
+                setSelectedhashPropertiesString('')
+            }
+        } else if(selectedListProperties.length === 0) {
+            setSelectedMultipliedPropertiesNumbers([]);
+            setSelectedhashPropertiesString([])
         }
     }
+
 
     const onClickButtonReset = () => {
         setSelectedListProperties([]);
-        setSelectedListPropertiesNumbers([]);
-        setSelectedListPropertiesString([]);
-        setSelectedhashPropertiesString([])
+        setSelectedMultipliedPropertiesNumbers([]);
+        setSelectedhashPropertiesString([]);
+        setSelectedListDeletedProperties([])
     }
+
 
     const onClickButtonСancel = () => {
         if(selectedListProperties.length > 0) {
             setSelectedListDeletedProperties((prev) => [...prev, selectedListProperties[selectedListProperties.length - 1]]);
             let notLastSelectedElementArray = selectedListProperties.filter( (item, index) => index != selectedListProperties.length - 1);
-            setSelectedListProperties(notLastSelectedElementArray);
+            setSelectedListProperties(notLastSelectedElementArray)
         }
     }
 
-    const onClickButtonStepForward = () => {
-        
-        if(selectedListDeletedProperties.length === 10) {
-            return
-        } else if(selectedListDeletedProperties.length) {
+
+    const onClickButtonStepForward = () => { 
+        if(selectedListDeletedProperties.length !== 0) {
             setSelectedListProperties((prev) => [...prev, selectedListDeletedProperties[selectedListDeletedProperties.length - 1]]);
             let notLastSelectedElementArray = selectedListDeletedProperties.filter( (item, index) => index != selectedListDeletedProperties.length - 1);
-            setSelectedListDeletedProperties(notLastSelectedElementArray);
+            setSelectedListDeletedProperties(notLastSelectedElementArray)
         } 
     }
-    
-    
-    useEffect(() => {
-        calculateHashString()
-    }, [selectedListPropertiesString])
+
 
     useEffect(() => {
-        multiplicationNumericValues()
-    }, [selectedListPropertiesNumbers])
+        transformationsSelectedValues()
+    }, [selectedListProperties])
+
     
     useEffect(() => {
         loadJson('https://raw.githubusercontent.com/WilliamRu/TestAPI/master/db.json')
             .catch(() => setShowModalWindowError(true))
     }, [])
 
+
     return (
         <div className='app'>
             {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
             <div className='container'>
                 <div className='app__wrapper-flex'>
-                    <ListSelect arrayDataSelect={arrayDataSelect} selectedListPropertiesNumbers={selectedListPropertiesNumbers} addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
+                    <ListSelect arrayDataSelect={arrayDataSelect} addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
                         <div className='app__wrapper-flex__result-value__calculation-results'>
@@ -176,8 +182,8 @@ export default function App() {
                             <CalculatedValues title='Хешированные строковые значения' calculatedValue={selectedHashPropertiesString} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
                             <div className='app__wrapper-flex__result-value__calculation-results__management'>
                                 <button onClick={onClickButtonReset}><p>Сброс</p></button>
-                                <button onClick={onClickButtonСancel}><p>Отмена</p></button>
-                                <button onClick={onClickButtonStepForward}>Вернуть</button>
+                                <button className={selectedListProperties.length == 0 ? 'inactive' : ''} onClick={onClickButtonСancel}><p>Отмена</p></button>
+                                <button className={selectedListDeletedProperties.length == 0 ? 'inactive' : ''} onClick={onClickButtonStepForward}><p>Вернуть</p></button>
                             </div>
                         </div>
                     </div>

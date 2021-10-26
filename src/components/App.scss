@@ -51,20 +51,35 @@
                         padding: 15px;
                         box-shadow: $box-shadow;
                         transition: transform $animation-speed, box-shadow $animation-speed;
+
+                        &:active {
+                            transform: translateY(5px) translateX(5px);
+                            box-shadow: $box-shadow-active;
+                        }
+
+                        &.inactive {
+                            background-color: $palette-secondary-quaternary;
+                            box-shadow: none;
+
+                        }
     
                         & > p {
                             color: $palette-primary;
                         }
     
-                        &:active {
-                            transform: translateY(5px) translateX(5px);
-                            box-shadow: $box-shadow-active;
-                        }
+                        
     
                         @media screen and (hover: hover) {
                             &:hover {
                                 cursor: pointer;
                             }
+                        }
+                    }
+
+                    & > button.inactive {
+                        &:active {
+                            transform: none;
+                            box-shadow: none;
                         }
                     }
                 }
@@ -83,7 +98,7 @@
             }
 
             &__result-value {
-                width: 50%; 
+                width: 50%;
             }
         }
     }
