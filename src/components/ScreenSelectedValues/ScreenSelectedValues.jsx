@@ -4,8 +4,7 @@ import waitImage from '@images/waitImage.png';
 
 export default function ScreenSelectedValues({className, selectedListProperties = []}) {
 
-    let iterateSelectedProperties = function() {return selectedListProperties.map((item) => <p key={nanoid()}>{item}</p>)}
-
+    let iterateSelectedProperties = function() {return selectedListProperties.map((item) => <p key={nanoid()}>{item[0]}</p>)}
     return (
         <article className={'screen-selected-values ' + className}>
             <h2>Выбранные значения</h2>
