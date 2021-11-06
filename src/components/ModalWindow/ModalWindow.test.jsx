@@ -22,8 +22,7 @@ afterEach(() => {
   container = null;
 });
 
-// проверка на появление и удаление компонента при разных полученных пропсов состояния компонента
-it('renders with or without error', () => {
+it('визуализация с ошибкой или без нее', () => {
     const wrapperPropsTrue = shallow(<ModalWindow showModalWindowError={true}/>);
     const wrapperPropsFalse = shallow(<ModalWindow showModalWindowError={false}/>);
     act(() => {
@@ -37,8 +36,7 @@ it('renders with or without error', () => {
     expect(wrapperPropsFalse.find('article').exists()).toBeFalsy();
 });
 
-// исполнение функции при клике на кнопку OK
-it('execution of the function when clicking on the OK button', () => { 
+it('выполнение функции при клике на кнопку OK', () => { 
   const mockCallBack = jest.fn();
   const component = shallow(<ModalWindow showModalWindowError={true} closeModalWindowError={mockCallBack}/> );
   expect(mockCallBack.mock.calls.length).toBe(0);
