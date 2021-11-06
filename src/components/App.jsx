@@ -170,7 +170,7 @@ export default function App() {
 
     return (
         <div className='app'>
-            {showModalWindowError ? <ModalWindow closeModalWindowError={closeModalWindowError} /> : null}
+            <ModalWindow closeModalWindowError={closeModalWindowError}  showModalWindowError={showModalWindowError} />
             <div className='container'>
                 <div className='app__wrapper-flex'>
                     <ListSelect arrayDataSelect={arrayDataSelect} addSelectedPropertyState={addSelectedPropertyState} className='app__wrapper-flex__list-select' />
