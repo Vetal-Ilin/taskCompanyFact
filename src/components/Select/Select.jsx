@@ -11,7 +11,7 @@ export default function Select({options = [], addSelectedPropertyState}) {
 
     return (
         <select className='select' onChange={clickOptions} defaultValue={'DEFAULT'}>
-            <option value='DEFAULT' hidden>{valueType}</option>
+            <option value='DEFAULT' hidden id='select-first-option-id'>{valueType}</option>
             {options.map((item) => typeof item !== 'object' ? <option key={nanoid()}>{String(item)}</option> : <option key={nanoid()}>{JSON.stringify(item)}</option>)}
         </select>
     )
