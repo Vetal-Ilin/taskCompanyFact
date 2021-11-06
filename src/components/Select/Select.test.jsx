@@ -48,3 +48,11 @@ it('Правильность отображения данных в select', () 
     });
     expect(container.innerHTML).toBe('<select class="select"><option value="DEFAULT" hidden="" id="select-first-option-id" selected="">boolean</option><option>true</option><option>false</option><option>true</option></select>');
 });
+
+it('выполнение функции при клике option', () => {
+    const mockCallBack = jest.fn();
+    const component = shallow(<Select options={['string1']} onChange={mockCallBack} addSelectedPropertyState={mockCallBack} /> );
+    expect(mockCallBack.mock.calls.length).toBe(0);
+    component.simulate('change', {target: {value: 'string1', valueType: 'string'}});
+    expect(mockCallBack.mock.calls.length).toBe(1);
+});
