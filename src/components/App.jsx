@@ -177,8 +177,8 @@ export default function App() {
                     <div className='app__wrapper-flex__result-value'>
                         <ScreenSelectedValues  selectedListProperties={selectedListProperties} />
                         <div className='app__wrapper-flex__result-value__calculation-results'>
-                            <CalculatedValues title='Перемноженные числовые значения' calculatedValue={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
-                            <CalculatedValues title='Хешированные строковые значения' calculatedValue={selectedHashPropertiesString} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <CalculatedValues title='Перемноженные числовые значения:' calculatedValue={selectedMultipliedPropertiesNumbers} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
+                            <CalculatedValues title='Хешированные строковые значения:' calculatedValue={selectedHashPropertiesString} className='app__wrapper-flex__result-value__calculation-results__calculated-values' />
                             <div className='app__wrapper-flex__result-value__calculation-results__management'>
                                 <button onClick={onClickButtonReset}><p>Сброс</p></button>
                                 <button className={selectedListProperties.length == 0 ? 'inactive' : ''} onClick={onClickButtonСancel}><p>Отмена</p></button>
