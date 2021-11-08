@@ -1,12 +1,14 @@
 export default async function loadJson(url) {
     let response = await fetch(url);
-    if(response.status === 200) {
+    try {
         let json = await response.json();
         let resultingArray = [];
         for(let item in json) {
             resultingArray.push(json[item])
         } 
+        console.log(resultingArray)
         return resultingArray
+    } catch(err) {
+        throw new Error(response.status)
     }
-    throw new Error(response.status)
 }
