@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import loadJson from '../services/loadJson/loadJson';
-import customFlatArrMethod from '../services/customFlatArrMethod/customFlatArrMethod';
-import customSplitArrMethod from '../services/customSplitArrMethod/customSplitArrMethod';
+import loadJson from '../services/loadJson/loadJson.service';
+import customFlatArrMethod from '../services/customFlatArrMethod/customFlatArrMethod.service';
+import customSplitArrMethod from '../services/customSplitArrMethod/customSplitArrMethod.service';
 import ModalWindow from '@components/ModalWindow/ModalWindow.jsx';
 import ListSelect from '@components/ListSelect/ListSelect';
 import ScreenSelectedValues from '@components/ScreenSelectedValues/ScreenSelectedValues';
@@ -33,7 +33,7 @@ export default function App() {
         }
     }
     
-    
+
     const transformationsSelectedValues = () => {
         if(selectedListProperties.length !== 0) {
             let mul = 1;
