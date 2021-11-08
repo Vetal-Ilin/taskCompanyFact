@@ -6,7 +6,6 @@ export default async function loadJson(url) {
         for(let item in json) {
             resultingArray.push(json[item])
         } 
-        console.log(resultingArray)
         return resultingArray
     } catch(err) {
         throw new Error(response.status)
